@@ -1,5 +1,5 @@
 ---
-name: 🐞 Bug md
+name: 🐞 Bug Report (Markdown Template)
 about: File a bug/issue
 title: '[BUG] <title>'
 labels: Bug, Needs Triage
