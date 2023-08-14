@@ -1,4 +1,4 @@
-name: 🐞 Bug Report
+name: 🐞 Bug Report (Generic)
 description: File a bug/issue
 title: "[BUG] <title>"
 labels: ["Bug", "Needs Triage"]
