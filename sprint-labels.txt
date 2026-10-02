@@ -1,6 +1,6 @@
 # One line per sprint: <short name> | <full sprint name>
 # The label is "sprint: <short name>". The full name is the label description.
-2026 Q4 S1 | 2026 Q4 Sprint 1 - 1.4.5 (1st Oct - 16th Oct)
-2026 Q4 S2 | 2026 Q4 Sprint 2
-2026 Q4 S3 | 2026 Q4 Sprint 3
-2026 Q4 S4 | 2026 Q4 Sprint 4
+Q4 2026 Sprint 1 | Q4 2026 Sprint 1 - 1.4.5 (1st Oct - 16th Oct)
+Q4 2026 Sprint 2 | Q4 2026 Sprint 2
+Q4 2026 Sprint 3 | Q4 2026 Sprint 3
+Q4 2026 Sprint 4 | Q4 2026 Sprint 4
