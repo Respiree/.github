@@ -1,0 +1,24 @@
+name: Sprint label
+
+on:
+    pull_request:
+        branches:
+            - $default-branch
+        types: [opened, reopened, synchronize, labeled, unlabeled]
+
+jobs:
+    sprint-label:
+        name: Sprint label
+        runs-on: ubuntu-latest
+        timeout-minutes: 2
+
+        steps:
+            - name: Require exactly one sprint label
+              env:
+                  LABELS: ${{ toJSON(github.event.pull_request.labels.*.name) }}
+              run: |
+                  count=$(jq '[.[] | select(startswith("sprint:"))] | length' <<< "$LABELS")
+                  if [ "$count" -ne 1 ]; then
+                    echo "::error::Add exactly one sprint: label (found $count). Use 'sprint: none' for work outside a sprint."
+                    exit 1
+                  fi

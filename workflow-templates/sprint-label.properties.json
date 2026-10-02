@@ -1,0 +1,6 @@
+{
+    "name": "Sprint label",
+    "description": "Fails a pull request that does not have exactly one sprint: label.",
+    "iconName": "octicon tag",
+    "categories": ["Automation"]
+}
