@@ -1,0 +1,19 @@
+name: Sprint label
+
+on:
+    pull_request:
+        branches:
+            - $default-branch
+        types: [opened, reopened, synchronize, labeled, unlabeled]
+
+concurrency:
+    group: sprint-label-${{ github.event.pull_request.number }}
+    cancel-in-progress: true
+
+permissions: {}
+
+jobs:
+    sprint-label:
+        uses: Respiree/.github/.github/workflows/sprint-label.yml@main
+        with:
+            skip-prs-opened-before: ''
