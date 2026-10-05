@@ -1,0 +1,34 @@
+name: Sprint label
+
+on:
+    workflow_call:
+        inputs:
+            skip-prs-opened-before:
+                description: PRs opened before this UTC time pass without a label, for example 2026-10-05T06:40:00Z. Empty checks every PR.
+                type: string
+                default: ''
+
+permissions: {}
+
+jobs:
+    sprint-label:
+        name: Sprint label
+        runs-on: ubuntu-latest
+        timeout-minutes: 2
+
+        steps:
+            - name: Require exactly one sprint label
+              env:
+                  LABELS: ${{ toJSON(github.event.pull_request.labels.*.name) }}
+                  CREATED_AT: ${{ github.event.pull_request.created_at }}
+                  SKIP_BEFORE: ${{ inputs.skip-prs-opened-before }}
+              run: |
+                  if [[ -n "$SKIP_BEFORE" && "$CREATED_AT" < "$SKIP_BEFORE" ]]; then
+                    echo "PR opened before the sprint label rule. Skip."
+                    exit 0
+                  fi
+                  count=$(jq '[.[] | select(startswith("sprint:"))] | length' <<< "$LABELS")
+                  if [ "$count" -ne 1 ]; then
+                    echo "::error::Add exactly one sprint: label (found $count). Use 'sprint: none' for work outside a sprint. Re-run uses the old labels, so add or remove a label to check again."
+                    exit 1
+                  fi
